@@ -21,7 +21,7 @@ class UserController extends Controller
     
     public function login(Request $request)
     {
-        if (!Auth::attempt(['email'=>$request->email , 'password'=>$request->password])) 
+        if (!Auth::attempt($request->only(['email' , 'password'])))
         return response(['message'=>'Unauthorized','code'=>401]);
         
         $user= User::where('email', $request->email)->first();
