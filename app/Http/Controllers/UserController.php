@@ -19,7 +19,7 @@ class UserController extends Controller
         return response(['success'=>true , 'data'=>$user]);
     }
     
-    public function login(Request $request)
+    public function login(UserRequest $request)
     {
         if (!Auth::attempt($request->only(['email' , 'password'])))
         return response(['message'=>'Unauthorized','code'=>401]);
