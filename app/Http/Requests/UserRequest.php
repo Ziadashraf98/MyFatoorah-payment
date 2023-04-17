@@ -27,10 +27,10 @@ class UserRequest extends FormRequest
 
         return [
             'name'=>[$routeName == 'user.register' ? 'required' : 'nullable' , 'min:3' , 'max:35'],
-            'email'=>[$routeName == 'user.register' ? 'unique:users' : 'nullable' , 'email' , 'required'],
+            'email'=>[$routeName == 'user.register' ? 'unique:users' : 'nullable' , 'email' , 'required_without:phone'],
+            'phone'=>[$routeName == 'user.register' ? 'unique:users' : 'nullable' , 'digits:11' , 'required_without:email'],
             'password'=>'required|between:8,30',
             'c_password'=>[$routeName == 'user.register' ? 'required' : 'nullable' , 'same:password'],
-            'phone'=>'digits:11|unique:users',
             // 'password_confirmation'=>'required',
         ];
     }
